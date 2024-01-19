@@ -18,7 +18,7 @@
   :root {
     
     /* Global Variables */
-    --main-color: #333;
+    --main-color: white;
 
 
     /* Component Specific Variables */
@@ -59,4 +59,14 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 3rem;
+}
+
+a:hover{
+    cursor: pointer;
 }
