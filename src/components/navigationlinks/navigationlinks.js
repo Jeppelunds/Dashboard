@@ -1,18 +1,12 @@
-import { fetchGalleries } from "@/lib/data.service";
 import Link from "next/link";
 
-const NavigationLinks = async () => {
+const NavigationLinks = ({gallery}) => {
 
-const galleries = await fetchGalleries();
+let url = "/galleries/" + gallery.name;
 
 return (
   <>
-    {galleries.map((gallery, index) => {
-      {
-       
-      }
-      return <Link href={gallery.name} key={index} gallery={gallery}>{gallery.name}</Link>;
-    })}
+    <Link href={url}>{gallery.name}</Link>
   </>
 );
 

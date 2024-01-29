@@ -1,0 +1,42 @@
+.slider{
+    width: 100%;
+    height: 100px;
+    position: relative;
+}
+
+.slide{
+   width: 100%;
+   height: 600px;
+}
+
+.image{
+    object-fit: contain;
+    width: 100%;
+    height: 600px;
+}
+
+.changeImgBtnNext{
+    position: absolute;
+    right: 0;
+    top: 300px;
+    z-index: 100;
+    font-size: 3rem;
+    color: #DEF386;
+    cursor: pointer;
+}
+
+.changeImgBtnPrev{
+    position: absolute;
+    left: 0;
+    top: 300px;
+    z-index: 100;
+    font-size: 3rem;
+    color: #DEF386;
+    cursor: pointer;
+}
+
+
+
+
+
+

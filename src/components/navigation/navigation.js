@@ -1,21 +1,18 @@
-'use client';
-
+'use client'
 import styles from './navigation.module.css';
 import { FaHamburger } from "react-icons/fa";
 import Image from 'next/image';
-import { useState } from 'react';
-import Link from 'next/link';
 import NavigationLinks from '../navigationlinks/navigationlinks';
+import React, { useState } from "react";
 
 
-const Navigation = () => {
+const Navigation = ({galleries}) => {
 
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); 
 
-    const handleClick = () => {
-      setIsOpen(!isOpen);
-    };
-    
+   const handleClick = () => {
+     setIsOpen(!isOpen);
+   };
 
   return (
     <>
@@ -29,8 +26,12 @@ const Navigation = () => {
         />
         <FaHamburger className={styles.faBurger} onClick={handleClick} />
       </div>
-      <div className={`${styles.navigationDropDown} ${isOpen ? styles.down : ""}`}>
-        <NavigationLinks />
+      <div className={`${styles.navigationDropDown} ${isOpen ? styles.down : '' }`}>
+        {galleries.map((gallery, index) => {
+          return (
+            <NavigationLinks key={index} gallery={gallery}></NavigationLinks>
+          );
+        })}
       </div>
     </>
   );

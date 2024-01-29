@@ -1,27 +1,53 @@
+'use client'
 import styles from './dashboard.module.css';
+import Image from 'next/image';
+import Link from 'next/link';
+import Swiper from '@/components/swiper/swiper';
+import { useState } from 'react';
 
-const Dashboard = () => {
+
+const Dashboard = ({author, authorImages}) => {
+  const [showSwiper, setShowSwiper] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowSwiper(!showSwiper);
+  };
+  
+  
+  // const galleries = await fetchAuthorsByGalleryName(author);
+
+
     return (
       <div className={styles.dashboardContainer}>
         <div className={styles.dashboard}>
-          <div className={styles.authorName}>
-            <a href="#">portfolie navn</a>
-          </div>
-          <div className={styles.authorName}>
-            <a href="#">portfolie navn</a>
-          </div>
-          <div className={styles.authorName}>
-            <a href="#">portfolie navn</a>
-          </div>
+          {author.map((author, index) => {
+            let url = `/galleries/${author.gallery}/${author.niceUrl}`;
+            return (
+              <div key={index} className={styles.authorName}>
+                <Link href={url}>{author.author}</Link>
+              </div>
+            );
+          })}
         </div>
-        <div className={styles.imgContainer}>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-            praesentium suscipit veritatis modi sunt blanditiis labore quidem
-            deleniti tempora deserunt nisi culpa mollitia nulla ex officiis
-            perspiciatis voluptatum, hic et sequi! Quibusdam explicabo quis
-            tempora illum, esse odit fuga nesciunt.
-          </p>
+          <button onClick={handleButtonClick} className={styles.button}>Switch</button>
+        <div className={styles.imgContainer} style={showSwiper ? {} : {display: 'grid'}}>
+          {showSwiper ? (
+            <Swiper authorImages={authorImages}></Swiper>
+          ) : (
+            authorImages &&
+            authorImages.map((image, index) => {
+              return (
+                <Image
+                  className={styles.image}
+                  key={index}
+                  src={image.path}
+                  alt="hej"
+                  width={600}
+                  height={350}
+                ></Image>
+              );
+            })
+          )}
         </div>
       </div>
     );
